@@ -2,9 +2,9 @@
 
 #include "Solver.h"
 //#include "Object.h"
-#include "BBox.h"
-#include "Hemisphere.h"
-#include "Vertical.h"
+//#include "BBox.h"
+//#include "Hemisphere.h"
+//#include "Vertical.h"
 
 Solver::Solver()
 {
@@ -18,9 +18,6 @@ Solver::Solver(int its)
 
 std::vector <Particle> Solver::iterationControl(const std::string &id)
 {
-  //create instances of the emitters
-  Hemisphere h;
-  Vertical v;
   //begin iterations
   if (id == "h")
   {
@@ -47,6 +44,34 @@ std::vector <Particle> Solver::iterationControl(const std::string &id)
       v.print("v");
       //v.trace("v");
       //v.print("v");
+    }
+    std::vector <Particle> drawData = v.getParticles("v");
+    return drawData;
+  }
+}
+
+//This function is purely to display particles after they have moved
+//Will not be used in final system
+std::vector <Particle> Solver::move(const std::string &id)
+{
+  //begin iterations
+  if (id == "h")
+  {
+    for(int i = 0; i < m_iterations; ++i)
+    {
+      h.trace("h");
+      h.print("h");
+    }
+    //vector to add draw data to
+    std::vector <Particle> drawData = h.getParticles("h");
+    return drawData;
+  }
+  else if (id == "v")
+  {
+    for(int i = 0; i < m_iterations; ++i)
+    {
+      v.trace("v");
+      v.print("v");
     }
     std::vector <Particle> drawData = v.getParticles("v");
     return drawData;

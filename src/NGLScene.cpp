@@ -20,7 +20,7 @@ NGLScene::NGLScene(QWindow *_parent) : OpenGLWindow(_parent)
 {
   // re-size the widget to that of the parent (in this case the GLFrame passed in on construction)
   setTitle("Particle Based Weathering System - Martin Davies");
-  m_projection = ngl::perspective(45.0f,1.05f,0.5,10);
+  m_projection = ngl::perspective(50.0f,float(64/45),0.5,10);
   m_view = ngl::lookAt(ngl::Vec3(2,2,2), ngl::Vec3(0,0,0), ngl::Vec3(0,1,0));
 }
 
@@ -57,11 +57,6 @@ void NGLScene::initialize()
   // as re-size is not explicitly called we need to do this.
   glViewport(0,0,width(),height());
 
-  //begin Solver
-  Solver s(1);
-  m_HemiPoints = s.iterationControl("h");
-  m_VertPoints = s.iterationControl("v");
-
   //pointer to shader lib
   ngl::ShaderLib *shader = ngl::ShaderLib::instance();
   //create shader program and assign name
@@ -94,6 +89,11 @@ void NGLScene::render()
   // clear the screen and depth buffer
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+  //begin Solver
+  Solver s(1);
+  m_HemiPoints = s.iterationControl("h");
+  m_VertPoints = s.iterationControl("v");
+
   //instance of shader lib
   ngl::ShaderLib *shader = ngl::ShaderLib::instance();
 
@@ -119,6 +119,13 @@ void NGLScene::render()
     shader->setShaderParamFromMat4("MVP",trans*m_view*m_projection);
     prim->draw("sphere");
   }
+
+  //trace the particles to the origin.
+  //no graphical output is implemented. Text output is.
+  //Particles also decide how they react with colliding with the origin here
+  //provided as text output
+  s.move("h");
+  s.move("v");
 }
 
 void NGLScene::keyPressEvent(QKeyEvent *_event)

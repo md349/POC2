@@ -73,6 +73,25 @@ void Particle::update(const std::string &id)
       else
       {
         m_in = true;
+        //use random numbers for particle contents
+        ngl::Random *rand=ngl::Random::instance();
+        int action = rand->randomPositiveNumber(3);
+        //std::cout<<"a random integer : "<<action<<"\n";
+        //if 0 reflect
+        if(action == 0)
+        {
+          std::cout<<"I have reflected!\n";
+        }
+        //if 1 bounced
+        else if(action == 1)
+        {
+          std::cout<<"I have bounced!\n";
+        }
+        //if 2 settled
+        else if(action == 2)
+        {
+          std::cout<<"I have settled!\n";
+        }
       }
    }
   }
@@ -95,6 +114,25 @@ void Particle::update(const std::string &id)
       else
       {
         m_in = true;
+        //use random numbers for particle contents
+        ngl::Random *rand=ngl::Random::instance();
+        int action = rand->randomPositiveNumber(3);
+        //std::cout<<"a random integer : "<<action<<"\n";
+        //if 0 reflect
+        if(action == 0)
+        {
+          std::cout<<"I have reflected!\n";
+        }
+        //if 1 bounced
+        else if(action == 1)
+        {
+          std::cout<<"I have bounced!\n";
+        }
+        //if 2 settled
+        else if(action == 2)
+        {
+          std::cout<<"I have settled!\n";
+        }
       }
     }
   }
