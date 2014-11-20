@@ -1,6 +1,11 @@
 #ifndef SOLVER_H
 #define SOLVER_H
 
+#include <vector>
+#include <ngl/Vec3.h>
+
+#include "Particle.h"
+
 class Solver
 {
   public:
@@ -11,7 +16,7 @@ class Solver
     Solver(int its);
 
     //Iteration control
-    void iterationControl();
+    std::vector <Particle> iterationControl(const std::string &id);
 
     //destructor
     ~Solver();
