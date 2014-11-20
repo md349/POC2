@@ -48,10 +48,10 @@ directory points to your NGL installation. In the Run tab add
 Run qmake and build the project again. When it builds you can press Run or ctrl R and the program will run.
 
 When it runs the project will assign the particles to their starting positions, as stated in the design report.
-Spheres are drawn to represent each γ-ton. After the scene is drawn the γ-tons propagate towards the origin. When
-they intersect with the origin or the origin plane (this depends on the type of emission) they are drawn again.
-After this they stochastically select whether they reflect, bounce or settle. This is select using NGL::Random
-and is not drawn. Their decision is output as text as well as their starting position and their position when
-they hit the origin, or origin plane.
+Spheres are drawn to represent each γ-ton. After the scene is drawn the γ-tons propagate towards the origin. The
+type of propagation that occurs depends on the type of emitter they are bound to. After they have propagated the
+new particle position is output as text. After this they stochastically select whether they reflect, bounce or
+settle. This is selected using NGL::Random and is not drawn. Their decision is output as text as well as their
+starting position and their position when they hit the origin, or origin plane.
 
 I hope you like the early γ-tons. 
